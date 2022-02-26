@@ -21,6 +21,11 @@
 		33F11CD227BE6EB00033BDC3 /* CarSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11CD127BE6EB00033BDC3 /* CarSliderView.swift */; };
 		33F11CD427BE76180033BDC3 /* CarSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11CD327BE76180033BDC3 /* CarSpeedView.swift */; };
 		33F11CD627BE7A570033BDC3 /* CarSpecsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11CD527BE7A570033BDC3 /* CarSpecsView.swift */; };
+		33F15D0927C4FC0100D041BE /* SensorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F15D0827C4FC0100D041BE /* SensorPickerView.swift */; };
+		33F15D0E27C50F9700D041BE /* GraphTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F15D0D27C50F9700D041BE /* GraphTest.swift */; };
+		33F15D1827C5275E00D041BE /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 33F15D1727C5275E00D041BE /* SwiftUICharts */; };
+		33F15D1B27CA23E300D041BE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F15D1A27CA23E300D041BE /* MapView.swift */; };
+		33F15D1D27CA245F00D041BE /* MapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F15D1C27CA245F00D041BE /* MapTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +44,10 @@
 		33F11CD127BE6EB00033BDC3 /* CarSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSliderView.swift; sourceTree = "<group>"; };
 		33F11CD327BE76180033BDC3 /* CarSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpeedView.swift; sourceTree = "<group>"; };
 		33F11CD527BE7A570033BDC3 /* CarSpecsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpecsView.swift; sourceTree = "<group>"; };
+		33F15D0827C4FC0100D041BE /* SensorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorPickerView.swift; sourceTree = "<group>"; };
+		33F15D0D27C50F9700D041BE /* GraphTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTest.swift; sourceTree = "<group>"; };
+		33F15D1A27CA23E300D041BE /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		33F15D1C27CA245F00D041BE /* MapTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F15D1827C5275E00D041BE /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +105,8 @@
 		33A4C42F27BBB004008DF033 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				33F15D1927CA23AE00D041BE /* MapTest */,
+				33F15D0727C4FBEC00D041BE /* Sensor */,
 				33F11CD727BE7C1E0033BDC3 /* MyCar */,
 				33A4C43227BBB02F008DF033 /* LogInView.swift */,
 				33F11CCB27BE639C0033BDC3 /* UserTabView.swift */,
@@ -145,6 +157,24 @@
 			path = MyCar;
 			sourceTree = "<group>";
 		};
+		33F15D0727C4FBEC00D041BE /* Sensor */ = {
+			isa = PBXGroup;
+			children = (
+				33F15D0827C4FC0100D041BE /* SensorPickerView.swift */,
+				33F15D0D27C50F9700D041BE /* GraphTest.swift */,
+			);
+			path = Sensor;
+			sourceTree = "<group>";
+		};
+		33F15D1927CA23AE00D041BE /* MapTest */ = {
+			isa = PBXGroup;
+			children = (
+				33F15D1A27CA23E300D041BE /* MapView.swift */,
+				33F15D1C27CA245F00D041BE /* MapTest.swift */,
+			);
+			path = MapTest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -161,6 +191,9 @@
 			dependencies = (
 			);
 			name = seniorRimacApp;
+			packageProductDependencies = (
+				33F15D1727C5275E00D041BE /* SwiftUICharts */,
+			);
 			productName = seniorRimacApp;
 			productReference = 33A4C41E27BBAFE1008DF033 /* seniorRimacApp.app */;
 			productType = "com.apple.product-type.application";
@@ -189,6 +222,9 @@
 				Base,
 			);
 			mainGroup = 33A4C41527BBAFE1008DF033;
+			packageReferences = (
+				33F15D1627C5275E00D041BE /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+			);
 			productRefGroup = 33A4C41F27BBAFE1008DF033 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,10 +254,14 @@
 				33A4C43327BBB02F008DF033 /* LogInView.swift in Sources */,
 				33A4C42427BBAFE1008DF033 /* ContentView.swift in Sources */,
 				33F11CCE27BE63FE0033BDC3 /* SharedRecordView.swift in Sources */,
+				33F15D0927C4FC0100D041BE /* SensorPickerView.swift in Sources */,
 				33A4C43927BBC382008DF033 /* View+Extension.swift in Sources */,
 				33F11CD227BE6EB00033BDC3 /* CarSliderView.swift in Sources */,
+				33F15D1D27CA245F00D041BE /* MapTest.swift in Sources */,
 				33A4C43627BBB8B6008DF033 /* CustomColor.swift in Sources */,
+				33F15D1B27CA23E300D041BE /* MapView.swift in Sources */,
 				33F11CCC27BE639C0033BDC3 /* UserTabView.swift in Sources */,
+				33F15D0E27C50F9700D041BE /* GraphTest.swift in Sources */,
 				33A4C43B27BBC967008DF033 /* CustomButtons.swift in Sources */,
 				33F11CD627BE7A570033BDC3 /* CarSpecsView.swift in Sources */,
 				33A4C42227BBAFE1008DF033 /* seniorRimacAppApp.swift in Sources */,
@@ -431,6 +471,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		33F15D1627C5275E00D041BE /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		33F15D1727C5275E00D041BE /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33F15D1627C5275E00D041BE /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 33A4C41627BBAFE1008DF033 /* Project object */;
 }

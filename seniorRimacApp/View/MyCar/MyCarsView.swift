@@ -13,7 +13,7 @@ struct MyCarsView: View {
         ZStack{
             CustomColor.rimacBlue
                 .ignoresSafeArea(.all, edges: .top)
-            VStack{
+            ScrollView{
                 
                 Text("Nevera")
                     .font(.system(size: 40))

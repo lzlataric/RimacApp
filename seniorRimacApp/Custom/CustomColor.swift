@@ -10,5 +10,6 @@ import SwiftUI
 
 struct CustomColor {
     static let rimacBlue = Color("rimacBlue")
+    static let monoRimacBlue = Color("monoRimacBlue")
     // Add more here...
 }

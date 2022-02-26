@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CarSpeedView: View {
     var body: some View {
-        HStack(spacing: 40){
+        HStack(spacing: 50){
             VStack{
                 Image(systemName: "timer")
                     .font(.system(size: 40))

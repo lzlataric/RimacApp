@@ -10,7 +10,7 @@ import SwiftUI
 struct UserTabView: View {
     var body: some View {
         TabView{
-            SharedRecordView()
+            MapTest()
                 .tabItem {
                     Label("New", systemImage: "shift.fill")
                 }
@@ -19,6 +19,12 @@ struct UserTabView: View {
                 .tabItem {
                     Label("My Car", systemImage: "car.fill")
                 }
+            
+            SensorPickerView()
+                .tabItem {
+                    Label("Sensors", systemImage: "sensor.tag.radiowaves.forward.fill")
+                }
+
         }
         .accentColor(CustomColor.rimacBlue)
     }
