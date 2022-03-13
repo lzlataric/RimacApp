@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct LogInView: View {
+    
+    @ObservedObject var loginVM = LoginViewModel()
+    
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var isLogged : Bool = false
+    
     var body: some View {
         ZStack{
             CustomColor.rimacBlue
@@ -59,8 +63,9 @@ struct LogInView: View {
                         // Login
                         print("Login")
                         
-                        self.isLogged = true
+                        //self.isLogged = true
                         
+                        loginVM.logIn(username: username, password: password)
                         
                     }
                     .buttonStyle(LoginButton())
@@ -87,9 +92,13 @@ struct LogInView: View {
                 Spacer()
                 }
             }
-            if self.isLogged{
+//            if self.isLogged{
+//                UserTabView()
+//            }
+            if loginVM.loggedIn{
                 UserTabView()
             }
+                
         }
         
         
