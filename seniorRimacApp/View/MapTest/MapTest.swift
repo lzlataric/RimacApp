@@ -25,7 +25,7 @@ struct MapTest: View {
 
   var body: some View {
       MapView(region: region, lineCoordinates: lineCoordinates)
-          .frame(width: 200, height: 200)
+          .frame(width: 100, height: 100)
       //.edgesIgnoringSafeArea(.all)
   }
 }

@@ -46,7 +46,9 @@ public enum VehicleStatus: RawRepresentable, Equatable, Hashable, CaseIterable, 
 
 public enum Role: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
-  case driver
+  case guest
+  case carOwner
+  case engineer
   case systemAdmin
   case generalAdmin
   /// Auto generated constant for unknown enum values
@@ -54,7 +56,9 @@ public enum Role: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JS
 
   public init?(rawValue: RawValue) {
     switch rawValue {
-      case "DRIVER": self = .driver
+      case "GUEST": self = .guest
+      case "CAR_OWNER": self = .carOwner
+      case "ENGINEER": self = .engineer
       case "SYSTEM_ADMIN": self = .systemAdmin
       case "GENERAL_ADMIN": self = .generalAdmin
       default: self = .__unknown(rawValue)
@@ -63,7 +67,9 @@ public enum Role: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JS
 
   public var rawValue: RawValue {
     switch self {
-      case .driver: return "DRIVER"
+      case .guest: return "GUEST"
+      case .carOwner: return "CAR_OWNER"
+      case .engineer: return "ENGINEER"
       case .systemAdmin: return "SYSTEM_ADMIN"
       case .generalAdmin: return "GENERAL_ADMIN"
       case .__unknown(let value): return value
@@ -72,7 +78,9 @@ public enum Role: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JS
 
   public static func == (lhs: Role, rhs: Role) -> Bool {
     switch (lhs, rhs) {
-      case (.driver, .driver): return true
+      case (.guest, .guest): return true
+      case (.carOwner, .carOwner): return true
+      case (.engineer, .engineer): return true
       case (.systemAdmin, .systemAdmin): return true
       case (.generalAdmin, .generalAdmin): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
@@ -82,7 +90,9 @@ public enum Role: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JS
 
   public static var allCases: [Role] {
     return [
-      .driver,
+      .guest,
+      .carOwner,
+      .engineer,
       .systemAdmin,
       .generalAdmin,
     ]
@@ -134,6 +144,7 @@ public final class LoginMutation: GraphQLMutation {
       self.init(unsafeResultMap: ["__typename": "Mutation", "login": login.flatMap { (value: Login) -> ResultMap in value.resultMap }])
     }
 
+    /// Auth
     public var login: Login? {
       get {
         return (resultMap["login"] as? ResultMap).flatMap { Login(unsafeResultMap: $0) }
@@ -194,7 +205,6 @@ public final class VehiclesQuery: GraphQLQuery {
         id
         name
         modelName
-        modelNumber
         firmwareVersion
         status
       }
@@ -225,6 +235,7 @@ public final class VehiclesQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "vehicles": vehicles.flatMap { (value: [Vehicle?]) -> [ResultMap?] in value.map { (value: Vehicle?) -> ResultMap? in value.flatMap { (value: Vehicle) -> ResultMap in value.resultMap } } }])
     }
 
+    /// Vehicles
     public var vehicles: [Vehicle?]? {
       get {
         return (resultMap["vehicles"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Vehicle?] in value.map { (value: ResultMap?) -> Vehicle? in value.flatMap { (value: ResultMap) -> Vehicle in Vehicle(unsafeResultMap: value) } } }
@@ -243,7 +254,6 @@ public final class VehiclesQuery: GraphQLQuery {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("modelName", type: .nonNull(.scalar(String.self))),
-          GraphQLField("modelNumber", type: .nonNull(.scalar(String.self))),
           GraphQLField("firmwareVersion", type: .scalar(String.self)),
           GraphQLField("status", type: .nonNull(.scalar(VehicleStatus.self))),
         ]
@@ -255,8 +265,8 @@ public final class VehiclesQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, name: String, modelName: String, modelNumber: String, firmwareVersion: String? = nil, status: VehicleStatus) {
-        self.init(unsafeResultMap: ["__typename": "Vehicle", "id": id, "name": name, "modelName": modelName, "modelNumber": modelNumber, "firmwareVersion": firmwareVersion, "status": status])
+      public init(id: GraphQLID, name: String, modelName: String, firmwareVersion: String? = nil, status: VehicleStatus) {
+        self.init(unsafeResultMap: ["__typename": "Vehicle", "id": id, "name": name, "modelName": modelName, "firmwareVersion": firmwareVersion, "status": status])
       }
 
       public var __typename: String {
@@ -292,15 +302,6 @@ public final class VehiclesQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "modelName")
-        }
-      }
-
-      public var modelNumber: String {
-        get {
-          return resultMap["modelNumber"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "modelNumber")
         }
       }
 
@@ -363,6 +364,7 @@ public final class UserQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "me": me.flatMap { (value: Me) -> ResultMap in value.resultMap }])
     }
 
+    /// Auth
     public var me: Me? {
       get {
         return (resultMap["me"] as? ResultMap).flatMap { Me(unsafeResultMap: $0) }
@@ -494,6 +496,7 @@ public final class DrivesQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "drives": drives.flatMap { (value: [Drife?]) -> [ResultMap?] in value.map { (value: Drife?) -> ResultMap? in value.flatMap { (value: Drife) -> ResultMap in value.resultMap } } }])
     }
 
+    /// Drives
     public var drives: [Drife?]? {
       get {
         return (resultMap["drives"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Drife?] in value.map { (value: ResultMap?) -> Drife? in value.flatMap { (value: ResultMap) -> Drife in Drife(unsafeResultMap: value) } } }
@@ -810,6 +813,7 @@ public final class SensorsQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "sensors": sensors.flatMap { (value: [Sensor?]) -> [ResultMap?] in value.map { (value: Sensor?) -> ResultMap? in value.flatMap { (value: Sensor) -> ResultMap in value.resultMap } } }])
     }
 
+    /// Sensors and their readings
     public var sensors: [Sensor?]? {
       get {
         return (resultMap["sensors"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Sensor?] in value.map { (value: ResultMap?) -> Sensor? in value.flatMap { (value: ResultMap) -> Sensor in Sensor(unsafeResultMap: value) } } }
@@ -944,14 +948,22 @@ public final class ReadingQuery: GraphQLQuery {
   public let operationDefinition: String =
     """
     query Reading($sensorID: ID!, $driveId: ID!) {
-      readings(sensorId: $sensorID, driveId: $driveId) {
+      readingsAndTolerances(sensorId: $sensorID, driveId: $driveId) {
         __typename
-        id
-        value
-        recordedAt {
+        tolerances {
           __typename
-          shortTimestamp
-          fullTimestamp
+          id
+          limitAt
+        }
+        readings {
+          __typename
+          id
+          value
+          recordedAt {
+            __typename
+            shortTimestamp
+            fullTimestamp
+          }
         }
       }
     }
@@ -976,7 +988,7 @@ public final class ReadingQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("readings", arguments: ["sensorId": GraphQLVariable("sensorID"), "driveId": GraphQLVariable("driveId")], type: .list(.object(Reading.selections))),
+        GraphQLField("readingsAndTolerances", arguments: ["sensorId": GraphQLVariable("sensorID"), "driveId": GraphQLVariable("driveId")], type: .object(ReadingsAndTolerance.selections)),
       ]
     }
 
@@ -986,28 +998,27 @@ public final class ReadingQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(readings: [Reading?]? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "readings": readings.flatMap { (value: [Reading?]) -> [ResultMap?] in value.map { (value: Reading?) -> ResultMap? in value.flatMap { (value: Reading) -> ResultMap in value.resultMap } } }])
+    public init(readingsAndTolerances: ReadingsAndTolerance? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "readingsAndTolerances": readingsAndTolerances.flatMap { (value: ReadingsAndTolerance) -> ResultMap in value.resultMap }])
     }
 
-    public var readings: [Reading?]? {
+    public var readingsAndTolerances: ReadingsAndTolerance? {
       get {
-        return (resultMap["readings"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Reading?] in value.map { (value: ResultMap?) -> Reading? in value.flatMap { (value: ResultMap) -> Reading in Reading(unsafeResultMap: value) } } }
+        return (resultMap["readingsAndTolerances"] as? ResultMap).flatMap { ReadingsAndTolerance(unsafeResultMap: $0) }
       }
       set {
-        resultMap.updateValue(newValue.flatMap { (value: [Reading?]) -> [ResultMap?] in value.map { (value: Reading?) -> ResultMap? in value.flatMap { (value: Reading) -> ResultMap in value.resultMap } } }, forKey: "readings")
+        resultMap.updateValue(newValue?.resultMap, forKey: "readingsAndTolerances")
       }
     }
 
-    public struct Reading: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["Reading"]
+    public struct ReadingsAndTolerance: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["TolerancesReadings"]
 
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-          GraphQLField("value", type: .scalar(Double.self)),
-          GraphQLField("recordedAt", type: .object(RecordedAt.selections)),
+          GraphQLField("tolerances", type: .list(.object(Tolerance.selections))),
+          GraphQLField("readings", type: .list(.object(Reading.selections))),
         ]
       }
 
@@ -1017,8 +1028,8 @@ public final class ReadingQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, value: Double? = nil, recordedAt: RecordedAt? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Reading", "id": id, "value": value, "recordedAt": recordedAt.flatMap { (value: RecordedAt) -> ResultMap in value.resultMap }])
+      public init(tolerances: [Tolerance?]? = nil, readings: [Reading?]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "TolerancesReadings", "tolerances": tolerances.flatMap { (value: [Tolerance?]) -> [ResultMap?] in value.map { (value: Tolerance?) -> ResultMap? in value.flatMap { (value: Tolerance) -> ResultMap in value.resultMap } } }, "readings": readings.flatMap { (value: [Reading?]) -> [ResultMap?] in value.map { (value: Reading?) -> ResultMap? in value.flatMap { (value: Reading) -> ResultMap in value.resultMap } } }])
       }
 
       public var __typename: String {
@@ -1030,41 +1041,32 @@ public final class ReadingQuery: GraphQLQuery {
         }
       }
 
-      public var id: GraphQLID {
+      public var tolerances: [Tolerance?]? {
         get {
-          return resultMap["id"]! as! GraphQLID
+          return (resultMap["tolerances"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Tolerance?] in value.map { (value: ResultMap?) -> Tolerance? in value.flatMap { (value: ResultMap) -> Tolerance in Tolerance(unsafeResultMap: value) } } }
         }
         set {
-          resultMap.updateValue(newValue, forKey: "id")
+          resultMap.updateValue(newValue.flatMap { (value: [Tolerance?]) -> [ResultMap?] in value.map { (value: Tolerance?) -> ResultMap? in value.flatMap { (value: Tolerance) -> ResultMap in value.resultMap } } }, forKey: "tolerances")
         }
       }
 
-      public var value: Double? {
+      public var readings: [Reading?]? {
         get {
-          return resultMap["value"] as? Double
+          return (resultMap["readings"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Reading?] in value.map { (value: ResultMap?) -> Reading? in value.flatMap { (value: ResultMap) -> Reading in Reading(unsafeResultMap: value) } } }
         }
         set {
-          resultMap.updateValue(newValue, forKey: "value")
+          resultMap.updateValue(newValue.flatMap { (value: [Reading?]) -> [ResultMap?] in value.map { (value: Reading?) -> ResultMap? in value.flatMap { (value: Reading) -> ResultMap in value.resultMap } } }, forKey: "readings")
         }
       }
 
-      public var recordedAt: RecordedAt? {
-        get {
-          return (resultMap["recordedAt"] as? ResultMap).flatMap { RecordedAt(unsafeResultMap: $0) }
-        }
-        set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "recordedAt")
-        }
-      }
-
-      public struct RecordedAt: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["Date"]
+      public struct Tolerance: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Tolerance"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("shortTimestamp", type: .scalar(String.self)),
-            GraphQLField("fullTimestamp", type: .scalar(String.self)),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("limitAt", type: .nonNull(.scalar(Double.self))),
           ]
         }
 
@@ -1074,8 +1076,8 @@ public final class ReadingQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(shortTimestamp: String? = nil, fullTimestamp: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Date", "shortTimestamp": shortTimestamp, "fullTimestamp": fullTimestamp])
+        public init(id: GraphQLID, limitAt: Double) {
+          self.init(unsafeResultMap: ["__typename": "Tolerance", "id": id, "limitAt": limitAt])
         }
 
         public var __typename: String {
@@ -1087,21 +1089,129 @@ public final class ReadingQuery: GraphQLQuery {
           }
         }
 
-        public var shortTimestamp: String? {
+        public var id: GraphQLID {
           get {
-            return resultMap["shortTimestamp"] as? String
+            return resultMap["id"]! as! GraphQLID
           }
           set {
-            resultMap.updateValue(newValue, forKey: "shortTimestamp")
+            resultMap.updateValue(newValue, forKey: "id")
           }
         }
 
-        public var fullTimestamp: String? {
+        public var limitAt: Double {
           get {
-            return resultMap["fullTimestamp"] as? String
+            return resultMap["limitAt"]! as! Double
           }
           set {
-            resultMap.updateValue(newValue, forKey: "fullTimestamp")
+            resultMap.updateValue(newValue, forKey: "limitAt")
+          }
+        }
+      }
+
+      public struct Reading: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Reading"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("value", type: .scalar(Double.self)),
+            GraphQLField("recordedAt", type: .object(RecordedAt.selections)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: GraphQLID, value: Double? = nil, recordedAt: RecordedAt? = nil) {
+          self.init(unsafeResultMap: ["__typename": "Reading", "id": id, "value": value, "recordedAt": recordedAt.flatMap { (value: RecordedAt) -> ResultMap in value.resultMap }])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return resultMap["id"]! as! GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var value: Double? {
+          get {
+            return resultMap["value"] as? Double
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "value")
+          }
+        }
+
+        public var recordedAt: RecordedAt? {
+          get {
+            return (resultMap["recordedAt"] as? ResultMap).flatMap { RecordedAt(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "recordedAt")
+          }
+        }
+
+        public struct RecordedAt: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Date"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("shortTimestamp", type: .scalar(String.self)),
+              GraphQLField("fullTimestamp", type: .scalar(String.self)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(shortTimestamp: String? = nil, fullTimestamp: String? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Date", "shortTimestamp": shortTimestamp, "fullTimestamp": fullTimestamp])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var shortTimestamp: String? {
+            get {
+              return resultMap["shortTimestamp"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "shortTimestamp")
+            }
+          }
+
+          public var fullTimestamp: String? {
+            get {
+              return resultMap["fullTimestamp"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "fullTimestamp")
+            }
           }
         }
       }

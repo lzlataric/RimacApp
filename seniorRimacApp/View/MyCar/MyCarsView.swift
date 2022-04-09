@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct MyCarsView: View {
-    
+    @ObservedObject var carVM : VehicleViewModel
+    @Binding var selectedCar: Int
+    @Binding var selectedCarName: String
     var body: some View {
         ZStack{
             CustomColor.rimacBlue
                 .ignoresSafeArea(.all, edges: .top)
+            
+            if(selectedCarName != ""){
             ScrollView{
                 
-                Text("Nevera")
-                    .font(.system(size: 40))
+                Text(selectedCarName)
+                    .font(.system(size: 30))
                     .foregroundColor(.white)
                 
                 CarSliderView()
@@ -30,12 +34,20 @@ struct MyCarsView: View {
                 Spacer()
                 
             }
+            
         }
+            else{
+                Text("Please select a car!")
+                    .font(.title)
+                    .foregroundColor(Color.white)
+            }
+//            .navigationTitle("")
+//            .navigationBarTitleDisplayMode(.inline)
+            
+        }
+        .navigationTitle("")
+        .navigationBarHidden(true)
     }
 }
 
-struct MyCarsView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyCarsView()
-    }
-}
+

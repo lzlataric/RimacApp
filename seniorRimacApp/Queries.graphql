@@ -9,7 +9,7 @@ query Vehicles{
     id
     name
     modelName
-    modelNumber
+    #modelNumber
     firmwareVersion
     status
   }
@@ -57,12 +57,18 @@ query Sensors($id: ID!){
 }
 
 query Reading($sensorID: ID!, $driveId: ID!){
-  readings(sensorId: $sensorID,driveId: $driveId){
-    id
-    value
-    recordedAt{
-      shortTimestamp
-      fullTimestamp
+  readingsAndTolerances(sensorId: $sensorID,driveId: $driveId){
+     tolerances{
+      id
+      limitAt
+     }
+     readings{
+      id
+      value
+      recordedAt{
+        shortTimestamp
+        fullTimestamp
+      }
     }
   }
 }

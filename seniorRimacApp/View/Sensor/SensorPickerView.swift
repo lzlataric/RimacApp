@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct SensorPickerView: View {
+    @ObservedObject var readingVM: ReadingViewModel
+    var driveId: String
     var body: some View {
-        NavigationView {
+//        NavigationView {
         ZStack
         {
             CustomColor.rimacBlue
-                .ignoresSafeArea(.all, edges: .top)
+                .ignoresSafeArea(.all)
             
             ScrollView{
                 
@@ -21,7 +23,9 @@ struct SensorPickerView: View {
                     .font(.system(size: 40))
                     .foregroundColor(.white)
                 
+                
                 HStack(spacing: 25){
+                    NavigationLink(destination: Graph(sensorID: "14", driveID: driveId, readingsVM: readingVM)) {
                     VStack{
                         Spacer()
                         Image("pedal")
@@ -36,7 +40,9 @@ struct SensorPickerView: View {
                     .frame(width: 150, height: 180)
                     .background(Color.white)
                     .cornerRadius(20)
+                }
                     
+                    NavigationLink(destination: Graph(sensorID: "6", driveID: driveId, readingsVM: readingVM)) {
                     VStack{
                         Spacer()
                         Image("speedometer")
@@ -52,8 +58,11 @@ struct SensorPickerView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                 }
+                }
                 
+               
                 HStack(spacing: 25){
+                    NavigationLink(destination: Graph(sensorID: "9", driveID: driveId, readingsVM: readingVM)) {
                     VStack{
                         Spacer()
                         Image("voltage")
@@ -68,8 +77,9 @@ struct SensorPickerView: View {
                     .frame(width: 150, height: 180)
                     .background(Color.white)
                     .cornerRadius(20)
+                }
                     
-                    
+                    NavigationLink(destination: Graph(sensorID: "8", driveID: driveId, readingsVM: readingVM)) {
                     VStack{
                         Spacer()
                         Image("temperature")
@@ -88,9 +98,11 @@ struct SensorPickerView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                 }
+                }
                 .padding(.top, 10)
                 
                 HStack(spacing: 25){
+                    NavigationLink(destination: Graph(sensorID: "1", driveID: driveId, readingsVM: readingVM)) {
                     VStack{
                         Spacer()
                         Image("mileage")
@@ -105,8 +117,9 @@ struct SensorPickerView: View {
                     .frame(width: 150, height: 180)
                     .background(Color.white)
                     .cornerRadius(20)
+                }
                     
-                    NavigationLink(destination: GraphTest()) {
+                    NavigationLink(destination: Graph(sensorID: "16", driveID: driveId, readingsVM: readingVM)) {
                     VStack{
                         Spacer()
                         Image("battery")
@@ -135,13 +148,14 @@ struct SensorPickerView: View {
             }
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
-        }
+//        .navigationBarHidden(true)
+//        }
         
     }
 }
 
 struct SensorPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        SensorPickerView()
+        SensorPickerView(readingVM: ReadingViewModel(), driveId: "1")
     }
 }

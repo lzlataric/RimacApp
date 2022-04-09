@@ -40,7 +40,7 @@ struct GraphTest: View {
     
     static func weekOfData() -> LineChartData {
         let data = LineDataSet(dataPoints: [
-            LineChartDataPoint(value: 100, xAxisLabel: "16:30", description: "16:30"   ),
+            LineChartDataPoint(value: 120, xAxisLabel: "16:30", description: "16:30"   ),
             LineChartDataPoint(value: 91, xAxisLabel: "17:00", description: "17:00"  ),
             LineChartDataPoint(value: 80 , xAxisLabel: "17:30", description: "17:30"),
             LineChartDataPoint(value: 72, xAxisLabel: "18:00", description: "18:00" ),
@@ -87,7 +87,7 @@ struct GraphTest: View {
         
         //let chartData =
          return LineChartData(dataSets: data,
-                              metadata: ChartMetadata(title: "Battery ", subtitle: "Over a Week", titleColour: CustomColor.monoRimacBlue, subtitleColour: CustomColor.monoRimacBlue),
+                              metadata: ChartMetadata(title: "Battery ", subtitle: "", titleColour: CustomColor.monoRimacBlue, subtitleColour: CustomColor.monoRimacBlue),
                                       chartStyle: LineChartStyle(infoBoxPlacement: .floating,
                                                                  infoBoxValueColour: Color.white,
                                                                  infoBoxDescriptionColour: Color.white,
@@ -103,8 +103,8 @@ struct GraphTest: View {
                                                                  yAxisTitle: "Battery available in %",
                                                                  yAxisTitleColour: CustomColor.monoRimacBlue,
                                                                  yAxisBorderColour: CustomColor.rimacBlue,
-                                                                 baseline: .minimumWithMaximum(of: 0),
-                                                                 topLine: .maximum(of: 100)))
+                                                                 baseline: .minimumWithMaximum(of: 0)))
+                                                                 //topLine: .maximum(of: 100)))
         
         
         /*defer {

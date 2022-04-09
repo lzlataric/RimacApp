@@ -8,25 +8,41 @@
 import SwiftUI
 
 struct UserTabView: View {
+    @ObservedObject var vehicleVM = VehicleViewModel()
+    @ObservedObject var driveVM = DriveViewModel()
+    @ObservedObject var readingVM = ReadingViewModel()
+    @State var selectedCar = 0
+    @State var selectedCarName = ""
     var body: some View {
+        NavigationView {
         TabView{
-            MapTest()
+            
+            CarSelectionView(carVM: vehicleVM, selectedCar: $selectedCar, selectedCarName: $selectedCarName)
                 .tabItem {
-                    Label("New", systemImage: "shift.fill")
+                    Label("Car selection", systemImage: "filemenu.and.selection")
                 }
             
-            MyCarsView()
+            MyCarsView(carVM: vehicleVM, selectedCar: $selectedCar, selectedCarName: $selectedCarName)
                 .tabItem {
-                    Label("My Car", systemImage: "car.fill")
+                    Label("Selected car", systemImage: "car.fill")
                 }
             
-            SensorPickerView()
+            DriveSelectionView(driveVM: driveVM, carVM: vehicleVM, readingVM: readingVM)
                 .tabItem {
-                    Label("Sensors", systemImage: "sensor.tag.radiowaves.forward.fill")
+                    Label("Drives", systemImage: "scribble.variable")
                 }
+            
+//            MyCarsView(carVM: vehicleVM)
+//                .tabItem {
+//                    Label("My Car", systemImage: "car.fill")
+//                }
+            
+            
 
         }
         .accentColor(CustomColor.rimacBlue)
+                    .navigationBarHidden(true)
+    }
     }
 }
 
