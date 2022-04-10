@@ -12,6 +12,9 @@ struct DriveSelectionView: View {
     @ObservedObject var driveVM: DriveViewModel
     @ObservedObject var carVM: VehicleViewModel
     @ObservedObject var readingVM: ReadingViewModel
+    @Binding var selectedCar: Int
+    @Binding var selectedCarName: String
+    
     var body: some View {
         ZStack{
             CustomColor.rimacBlue
@@ -20,18 +23,18 @@ struct DriveSelectionView: View {
                 Text("Drives")
                     .font(.system(size: 40))
                     .foregroundColor(.white)
-                Picker(selection: $currentVehicle, label: Text("Color")) {
-                    ForEach(carVM.car){ car in
-                        Text(car.modelName)
-                    }
-                    
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .onChange(of: currentVehicle) { tag in
-                    driveVM.fetch(id: String(tag))
-                }
+//                Picker(selection: $currentVehicle, label: Text("Color")) {
+//                    ForEach(carVM.car){ car in
+//                        Text(car.modelName)
+//                    }
+//                    
+//                }
+//                .pickerStyle(SegmentedPickerStyle())
+//                .onChange(of: currentVehicle) { tag in
+//                    driveVM.fetch(id: String(tag))
+//                }
                 
-                if currentVehicle == "0" {
+                if selectedCar == 0 {
                     Text("Please select car")
                         .foregroundColor(Color.white)
                     Spacer()
@@ -39,7 +42,7 @@ struct DriveSelectionView: View {
                     ScrollView{
                         ForEach(driveVM.drive){ drive in
                             
-                            NavigationLink(destination: SensorPickerView(readingVM: readingVM, driveId: currentVehicle)) {
+                            NavigationLink(destination: SensorPickerView(readingVM: readingVM, driveId: String(selectedCar))) {
                                 VStack{
                                     Text(drive.period.startAt?.shortTimestamp ?? "")
                                         .font(.system(size: 20))
@@ -54,8 +57,6 @@ struct DriveSelectionView: View {
                                             Text("Ended at: " + (drive.period.endAt?.fullTimestamp!.suffix(15))!.prefix(8))
                                         }
                                     }
-                                    
-                                    
                                     
                                 }
                                 .frame(width: 350, height: 250)

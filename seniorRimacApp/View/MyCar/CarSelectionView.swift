@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CarSelectionView: View {
     @ObservedObject var carVM : VehicleViewModel
+    @ObservedObject var driveVM : DriveViewModel
     @Binding var selectedCar: Int
     @Binding var selectedCarName: String
     
@@ -49,11 +50,10 @@ struct CarSelectionView: View {
                                     .frame(width: 346, height: 250)
                                 )
                             .padding(.top, 30)
-                            .onLongPressGesture{
+                            .onTapGesture{
                                 selectedCar = Int(car.id) ?? 0
                                 selectedCarName = car.name
-                                print("--------------")
-                                print(selectedCarName)
+                                driveVM.fetch(id: car.id)
                             }
                         }
                         
@@ -76,13 +76,15 @@ struct CarSelectionView: View {
                             .cornerRadius(20)
                             .padding(.top, 30)
 
-                            .onLongPressGesture{
+                            .onTapGesture{
                                 selectedCar = Int(car.id) ?? 0
                                 selectedCarName = car.name
+                                driveVM.fetch(id: car.id)
                             }
                         }
                     }
                 }
+                .frame(height: 600)
             }
         }
         .navigationTitle("")

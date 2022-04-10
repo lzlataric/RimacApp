@@ -24,17 +24,29 @@ struct Graph: View {
             }else{
                 VStack{
                     Spacer()
-                    CustomSlider()
+                    CustomSlider(readingVM: readingsVM)
                     
                     Spacer()
                     
-                    NavigationLink(destination: GraphView(data: readingsVM.getGraphData(title: ""))){
+                    //NavigationLink(destination: GraphView(data: readingsVM.getGraphData(title: ""))){
+                    
+                    if(readingsVM.shouldShowGraph == true){
+                        readingsVM.returnGraph()
+                    }
+                    else{
+                        ProgressView()
+                            .foregroundColor(Color.white)
+                    }
+                    
+                    //GraphView(data: readingsVM.graphPoints)
+                    
+                    
                         Text("See graph")
                             .frame(width: 100, height: 50, alignment: .center)
                             .background(Color.white)
                             .foregroundColor(CustomColor.rimacBlue)
                             .cornerRadius(15)
-                    }
+                    //}
                     Spacer()
                 }
             }

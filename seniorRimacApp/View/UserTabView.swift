@@ -17,7 +17,7 @@ struct UserTabView: View {
         NavigationView {
         TabView{
             
-            CarSelectionView(carVM: vehicleVM, selectedCar: $selectedCar, selectedCarName: $selectedCarName)
+            CarSelectionView(carVM: vehicleVM, driveVM: driveVM, selectedCar: $selectedCar, selectedCarName: $selectedCarName)
                 .tabItem {
                     Label("Car selection", systemImage: "filemenu.and.selection")
                 }
@@ -27,7 +27,7 @@ struct UserTabView: View {
                     Label("Selected car", systemImage: "car.fill")
                 }
             
-            DriveSelectionView(driveVM: driveVM, carVM: vehicleVM, readingVM: readingVM)
+            DriveSelectionView(driveVM: driveVM, carVM: vehicleVM, readingVM: readingVM, selectedCar: $selectedCar, selectedCarName: $selectedCarName)
                 .tabItem {
                     Label("Drives", systemImage: "scribble.variable")
                 }

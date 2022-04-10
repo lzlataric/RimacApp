@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CustomSlider: View {
+    @ObservedObject var readingVM : ReadingViewModel
     @State var width: CGFloat = 0
-    @State var width1: CGFloat = 15
+    @State var width1: CGFloat = UIScreen.main.bounds.width - 60
     var totalwidth = UIScreen.main.bounds.width - 60
     var body: some View {
         
@@ -39,6 +40,7 @@ struct CustomSlider: View {
                                 .onChanged({ (value) in
                                     if value.location.x >= 0 && value.location.x <= self.width1{
                                         self.width = value.location.x
+                                        readingVM.sliderOne = Double(self.getValue(val: self.width/self.totalwidth)) ?? 0
                                     }
                                 })
                         )
@@ -52,18 +54,25 @@ struct CustomSlider: View {
                                 .onChanged({ (value) in
                                     if value.location.x <= self.totalwidth && value.location.x >= self.width{
                                         self.width1 = value.location.x
+                                        readingVM.sliderTwo = Double(self.getValue(val: self.width1/self.totalwidth)) ?? 0
                                     }
                                 })
                         )
                 }
             }
+            
+            Text("Value")
+                .foregroundColor(Color.white)
+            
+            Text("\(self.getValue(val: self.width/self.totalwidth)) - \(self.getValue(val: self.width1/self.totalwidth))")
+                .foregroundColor(Color.white)
         }
         .padding()
     }
-}
-
-struct CustomSlider_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomSlider()
+    
+    func getValue(val: CGFloat) -> String{
+        return String(format: "%.2f", val)
     }
 }
+
+

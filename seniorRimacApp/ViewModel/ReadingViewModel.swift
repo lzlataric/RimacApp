@@ -8,30 +8,100 @@
 import Foundation
 import SwiftUICharts
 import SwiftUI
+import Combine
 
 class ReadingViewModel: ObservableObject{
     @Published var readings : [Readings] = []
+    @Published var sortedReadings : [Readings] = []
+    @Published var graphPoints = LineChartData(dataSets: LineDataSet(dataPoints: []))
+    @Published var shouldShowGraph: Bool = true
+    
+    @Published var sliderOne: Double = 0
+    @Published var sliderTwo: Double = 100
+    
+    var cancellables: [AnyCancellable] = []
+    
+    init(){
+        $sliderOne
+            .removeDuplicates()
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .sink(receiveValue: {str in
+                self.shouldShowGraph = false
+                self.graphPoints = LineChartData(dataSets: LineDataSet(dataPoints: []))
+                self.sensorSorting(firstSlider: self.sliderOne, secondSlider: self.sliderTwo)
+                //
+                
+                self.graphPoints = self.getGraphData(title: "")
+                //self.shouldShowGraph = true
+            })
+            .store(in: &cancellables)
+        
+        $sliderTwo
+            .removeDuplicates()
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {str in
+                self.shouldShowGraph = false
+                self.sensorSorting(firstSlider: self.sliderOne, secondSlider: self.sliderTwo)
+                //
+                self.graphPoints = LineChartData(dataSets: LineDataSet(dataPoints: []))
+                self.graphPoints = self.getGraphData(title: "")
+                print(self.graphPoints)
+                self.shouldShowGraph = true
+            })
+            .store(in: &cancellables)
+    }
+        
+    func returnGraph() -> GraphView{
+        return GraphView(data: self.graphPoints)
+    }
+    
+    func sensorSorting(firstSlider: Double, secondSlider: Double){
+        self.sortedReadings = []
+        let readingsLength = self.readings.count
+        let sortedAmountFirst = Double(readingsLength) * firstSlider
+        let sortedAmountSecond = Double(readingsLength) * secondSlider
+        
+        for index in 0...readingsLength {
+            //print("\(index)")
+            if(Double(index) >= sortedAmountFirst && Double(index) <= sortedAmountSecond){
+                if(readings.count != 0 && index != readingsLength){
+                    
+                    print(index)
+                self.sortedReadings.append(readings[index])
+                }
+            }
+        }
 
+        
+        if(sortedAmountFirst == 0 && sortedAmountSecond == 1){
+            self.sortedReadings = self.readings
+        }
+        
+        
+    }
+    
     
     func fetch(sensorId: String, driveId: String) {
         self.readings = []
         Network.shared.apollo.fetch(query: ReadingQuery(sensorID: sensorId, driveId: driveId)) {[weak self] result in // Change the query name to your query name
-          switch result {
-          case .success(let graphQLResult):
-            print("Success! Result: \(graphQLResult)")
-              //self?.car = graphQLResult.data?.vehicles as! [VehiclesQuery.Data.Vehicle]
-              if let readings = graphQLResult.data?.readingsAndTolerances?.readings{
-                  self?.readings = readings.compactMap({ $0 }).map(Readings.init)
-              }
-          case .failure(let error):
-            print("Failure! Error: \(error)")
-          }
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! Result: \(graphQLResult)")
+                //self?.car = graphQLResult.data?.vehicles as! [VehiclesQuery.Data.Vehicle]
+                if let readings = graphQLResult.data?.readingsAndTolerances?.readings{
+                    self?.readings = readings.compactMap({ $0 }).map(Readings.init)
+                    self?.sortedReadings = self?.readings ?? []
+                }
+            case .failure(let error):
+                print("Failure! Error: \(error)")
+            }
         }
     }
     
     func getDataPoints() -> [LineChartDataPoint]{
         var data : [LineChartDataPoint] = []
-        for reading in readings{
+        for reading in sortedReadings{
             let point = LineChartDataPoint(value: reading.value, xAxisLabel: "", description: "")
             data.append(point)
         }
