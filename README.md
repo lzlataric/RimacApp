@@ -2,6 +2,8 @@
 
 RimacApp is IOS version of Senior project made as final project for my College degree.
 
+SwiftUI + Graphql
+
 Libraries used:
 
 Apollo -> used for graphQL communication
