@@ -4,6 +4,79 @@ mutation Login($username: String!, $password: String!){
     }
 }
 
+mutation enableUser($id: ID!){
+        enableUser(id : $id)
+          {
+            id
+          }
+        }
+        
+mutation disableUser($id: ID!){
+        disableUser(id : $id)
+          {
+            id
+          }
+        }
+
+
+
+mutation updateUser($id: ID! $input: UpdateUser!){
+        updateUser(id : $id, input:$input)
+          {
+            id
+          }
+        }
+        
+mutation updateTolerance(
+    $id: ID!
+    $input: UpdateTolerance!
+    ){
+        updateTolerance(
+          id: $id,
+          input: $input
+        )
+          {
+            id
+          }
+        }
+        
+mutation grantUserRole($id: ID!,$input: GrantUserRole!){
+    grantUserRole(id: $id,input: $input)
+    {
+        id
+    }
+  }
+  
+  mutation createUser(
+    $input: CreateUser!
+    ){
+        createUser(
+            input: $input
+        ){
+            id
+        }
+    }
+    
+mutation createSensor(
+    $input: CreateSensor!
+    ){
+        createSensor(
+            input: $input
+        ){
+            id
+        }
+    }
+    
+    mutation createTolerance(
+    $input: CreateTolerance!
+    ) {
+    createTolerance(
+                        input:$input
+    ) {
+        id
+    }
+  }
+
 query Vehicles{
   vehicles{
     id
@@ -20,6 +93,18 @@ query User{
   me{
     id
     username
+    firstName
+    lastName
+    role
+  }
+}
+
+query GetUsers{
+  users{
+    id
+    username
+    firstName
+    lastName
     role
   }
 }

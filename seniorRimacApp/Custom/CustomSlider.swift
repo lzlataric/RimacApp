@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomSlider: View {
     @ObservedObject var readingVM : ReadingViewModel
     @State var width: CGFloat = 0
-    @State var width1: CGFloat = UIScreen.main.bounds.width - 60
+    @State var width1: CGFloat = 1
     var totalwidth = UIScreen.main.bounds.width - 60
     var body: some View {
         
@@ -61,11 +61,6 @@ struct CustomSlider: View {
                 }
             }
             
-            Text("Value")
-                .foregroundColor(Color.white)
-            
-            Text("\(self.getValue(val: self.width/self.totalwidth)) - \(self.getValue(val: self.width1/self.totalwidth))")
-                .foregroundColor(Color.white)
         }
         .padding()
     }

@@ -23,8 +23,6 @@
 		330F738827E3345B00CBA185 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F738727E3345B00CBA185 /* Graph.swift */; };
 		330F738C27E3355000CBA185 /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F738B27E3355000CBA185 /* SensorModel.swift */; };
 		330F738E27E335B700CBA185 /* ReadingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F738D27E335B700CBA185 /* ReadingsModel.swift */; };
-		330F739027E33ACF00CBA185 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 330F738F27E33ACF00CBA185 /* schema.json */; };
-		330F739227E33AE500CBA185 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F739127E33AE500CBA185 /* API.swift */; };
 		3367055827E3402300C026C1 /* ReadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3367055727E3402300C026C1 /* ReadingViewModel.swift */; };
 		3367055A27E3579400C026C1 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3367055927E3579300C026C1 /* GraphView.swift */; };
 		3367055C27E37C2200C026C1 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3367055B27E37C2200C026C1 /* CustomSlider.swift */; };
@@ -36,6 +34,21 @@
 		33A4C43627BBB8B6008DF033 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A4C43527BBB8B6008DF033 /* CustomColor.swift */; };
 		33A4C43927BBC382008DF033 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A4C43827BBC382008DF033 /* View+Extension.swift */; };
 		33A4C43B27BBC967008DF033 /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A4C43A27BBC967008DF033 /* CustomButtons.swift */; };
+		33BDA9202805790200A81E27 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA91F2805790200A81E27 /* UserModel.swift */; };
+		33BDA922280581B900A81E27 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA921280581B900A81E27 /* UserViewModel.swift */; };
+		33BDA92428058B6D00A81E27 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BDA92328058B6D00A81E27 /* schema.json */; };
+		33BDA92728058D7000A81E27 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA92628058D7000A81E27 /* AdminView.swift */; };
+		33BDA92A28058D9800A81E27 /* AdminTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA92928058D9800A81E27 /* AdminTabView.swift */; };
+		33BDA92D2806A68C00A81E27 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA92C2806A68C00A81E27 /* AccountView.swift */; };
+		33BDA92F2806AEF300A81E27 /* AdminUserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA92E2806AEF300A81E27 /* AdminUserListView.swift */; };
+		33BDA9312806AF0B00A81E27 /* AdminSensorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA9302806AF0B00A81E27 /* AdminSensorListView.swift */; };
+		33BDA9332806B07000A81E27 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA9322806B07000A81E27 /* UsersModel.swift */; };
+		33BDA9352806C1A000A81E27 /* UserSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA9342806C1A000A81E27 /* UserSheet.swift */; };
+		33BDA9392806E94E00A81E27 /* AdminUpdateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA9382806E94E00A81E27 /* AdminUpdateUserView.swift */; };
+		33BDA93B2806FEC900A81E27 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA93A2806FEC800A81E27 /* AdminViewModel.swift */; };
+		33BDA93D2807024100A81E27 /* SensorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA93C2807024100A81E27 /* SensorSheet.swift */; };
+		33BDA9432807079600A81E27 /* CreateToleraneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA9422807079600A81E27 /* CreateToleraneView.swift */; };
+		33BDA9452807102B00A81E27 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BDA9442807102B00A81E27 /* API.swift */; };
 		33F11CCC27BE639C0033BDC3 /* UserTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11CCB27BE639C0033BDC3 /* UserTabView.swift */; };
 		33F11CCE27BE63FE0033BDC3 /* SharedRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11CCD27BE63FE0033BDC3 /* SharedRecordView.swift */; };
 		33F11CD027BE64B10033BDC3 /* MyCarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11CCF27BE64B10033BDC3 /* MyCarsView.swift */; };
@@ -43,7 +56,6 @@
 		33F11CD427BE76180033BDC3 /* CarSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11CD327BE76180033BDC3 /* CarSpeedView.swift */; };
 		33F11CD627BE7A570033BDC3 /* CarSpecsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11CD527BE7A570033BDC3 /* CarSpecsView.swift */; };
 		33F15D0927C4FC0100D041BE /* SensorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F15D0827C4FC0100D041BE /* SensorPickerView.swift */; };
-		33F15D0E27C50F9700D041BE /* GraphTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F15D0D27C50F9700D041BE /* GraphTest.swift */; };
 		33F15D1827C5275E00D041BE /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 33F15D1727C5275E00D041BE /* SwiftUICharts */; };
 		33F15D1B27CA23E300D041BE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F15D1A27CA23E300D041BE /* MapView.swift */; };
 		33F15D1D27CA245F00D041BE /* MapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F15D1C27CA245F00D041BE /* MapTest.swift */; };
@@ -64,8 +76,6 @@
 		330F738727E3345B00CBA185 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		330F738B27E3355000CBA185 /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
 		330F738D27E335B700CBA185 /* ReadingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingsModel.swift; sourceTree = "<group>"; };
-		330F738F27E33ACF00CBA185 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		330F739127E33AE500CBA185 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = seniorRimacApp/API.swift; sourceTree = SOURCE_ROOT; };
 		3367055727E3402300C026C1 /* ReadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingViewModel.swift; sourceTree = "<group>"; };
 		3367055927E3579300C026C1 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		3367055B27E37C2200C026C1 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
@@ -78,6 +88,21 @@
 		33A4C43527BBB8B6008DF033 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		33A4C43827BBC382008DF033 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		33A4C43A27BBC967008DF033 /* CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
+		33BDA91F2805790200A81E27 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		33BDA921280581B900A81E27 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		33BDA92328058B6D00A81E27 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		33BDA92628058D7000A81E27 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		33BDA92928058D9800A81E27 /* AdminTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTabView.swift; sourceTree = "<group>"; };
+		33BDA92C2806A68C00A81E27 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		33BDA92E2806AEF300A81E27 /* AdminUserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserListView.swift; sourceTree = "<group>"; };
+		33BDA9302806AF0B00A81E27 /* AdminSensorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSensorListView.swift; sourceTree = "<group>"; };
+		33BDA9322806B07000A81E27 /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
+		33BDA9342806C1A000A81E27 /* UserSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheet.swift; sourceTree = "<group>"; };
+		33BDA9382806E94E00A81E27 /* AdminUpdateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUpdateUserView.swift; sourceTree = "<group>"; };
+		33BDA93A2806FEC800A81E27 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
+		33BDA93C2807024100A81E27 /* SensorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSheet.swift; sourceTree = "<group>"; };
+		33BDA9422807079600A81E27 /* CreateToleraneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToleraneView.swift; sourceTree = "<group>"; };
+		33BDA9442807102B00A81E27 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		33F11CCB27BE639C0033BDC3 /* UserTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabView.swift; sourceTree = "<group>"; };
 		33F11CCD27BE63FE0033BDC3 /* SharedRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedRecordView.swift; sourceTree = "<group>"; };
 		33F11CCF27BE64B10033BDC3 /* MyCarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarsView.swift; sourceTree = "<group>"; };
@@ -85,7 +110,6 @@
 		33F11CD327BE76180033BDC3 /* CarSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpeedView.swift; sourceTree = "<group>"; };
 		33F11CD527BE7A570033BDC3 /* CarSpecsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpecsView.swift; sourceTree = "<group>"; };
 		33F15D0827C4FC0100D041BE /* SensorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorPickerView.swift; sourceTree = "<group>"; };
-		33F15D0D27C50F9700D041BE /* GraphTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTest.swift; sourceTree = "<group>"; };
 		33F15D1A27CA23E300D041BE /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		33F15D1C27CA245F00D041BE /* MapTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,10 +180,10 @@
 				33A4C43027BBB00C008DF033 /* ViewModel */,
 				33A4C42F27BBB004008DF033 /* View */,
 				33A4C42127BBAFE1008DF033 /* seniorRimacAppApp.swift */,
-				330F739127E33AE500CBA185 /* API.swift */,
-				330F738F27E33ACF00CBA185 /* schema.json */,
+				33BDA9442807102B00A81E27 /* API.swift */,
 				33A4C42327BBAFE1008DF033 /* ContentView.swift */,
 				33A4C42527BBAFE5008DF033 /* Assets.xcassets */,
+				33BDA92328058B6D00A81E27 /* schema.json */,
 				33A4C42727BBAFE5008DF033 /* Preview Content */,
 				330F736827DCD36C00CBA185 /* Queries.graphql */,
 			);
@@ -177,6 +201,8 @@
 		33A4C42F27BBB004008DF033 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				33BDA92B2806A67200A81E27 /* Account */,
+				33BDA92528058C9900A81E27 /* Admin */,
 				330F738027E269B300CBA185 /* DriveSelection */,
 				33F15D1927CA23AE00D041BE /* MapTest */,
 				33F15D0727C4FBEC00D041BE /* Sensor */,
@@ -195,6 +221,8 @@
 				330F737827E09D5900CBA185 /* VehicleViewModel.swift */,
 				330F738327E269EA00CBA185 /* DriveViewModel.swift */,
 				3367055727E3402300C026C1 /* ReadingViewModel.swift */,
+				33BDA921280581B900A81E27 /* UserViewModel.swift */,
+				33BDA93A2806FEC800A81E27 /* AdminViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -206,6 +234,8 @@
 				330F738527E26A5100CBA185 /* DriveModel.swift */,
 				330F738B27E3355000CBA185 /* SensorModel.swift */,
 				330F738D27E335B700CBA185 /* ReadingsModel.swift */,
+				33BDA91F2805790200A81E27 /* UserModel.swift */,
+				33BDA9322806B07000A81E27 /* UsersModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -216,6 +246,8 @@
 				33A4C43527BBB8B6008DF033 /* CustomColor.swift */,
 				33A4C43A27BBC967008DF033 /* CustomButtons.swift */,
 				3367055B27E37C2200C026C1 /* CustomSlider.swift */,
+				33BDA9342806C1A000A81E27 /* UserSheet.swift */,
+				33BDA93C2807024100A81E27 /* SensorSheet.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -226,6 +258,27 @@
 				33A4C43827BBC382008DF033 /* View+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		33BDA92528058C9900A81E27 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				33BDA92628058D7000A81E27 /* AdminView.swift */,
+				33BDA92928058D9800A81E27 /* AdminTabView.swift */,
+				33BDA92E2806AEF300A81E27 /* AdminUserListView.swift */,
+				33BDA9302806AF0B00A81E27 /* AdminSensorListView.swift */,
+				33BDA9382806E94E00A81E27 /* AdminUpdateUserView.swift */,
+				33BDA9422807079600A81E27 /* CreateToleraneView.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		33BDA92B2806A67200A81E27 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				33BDA92C2806A68C00A81E27 /* AccountView.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		33F11CD727BE7C1E0033BDC3 /* MyCar */ = {
@@ -244,7 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				33F15D0827C4FC0100D041BE /* SensorPickerView.swift */,
-				33F15D0D27C50F9700D041BE /* GraphTest.swift */,
 				330F738727E3345B00CBA185 /* Graph.swift */,
 				3367055927E3579300C026C1 /* GraphView.swift */,
 			);
@@ -329,7 +381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				330F739027E33ACF00CBA185 /* schema.json in Resources */,
+				33BDA92428058B6D00A81E27 /* schema.json in Resources */,
 				33A4C42927BBAFE5008DF033 /* Preview Assets.xcassets in Resources */,
 				330F736927DCD36C00CBA185 /* Queries.graphql in Resources */,
 				33A4C42627BBAFE5008DF033 /* Assets.xcassets in Resources */,
@@ -367,35 +419,47 @@
 				33A4C43327BBB02F008DF033 /* LogInView.swift in Sources */,
 				330F738427E269EA00CBA185 /* DriveViewModel.swift in Sources */,
 				33A4C42427BBAFE1008DF033 /* ContentView.swift in Sources */,
+				33BDA9312806AF0B00A81E27 /* AdminSensorListView.swift in Sources */,
 				33F11CCE27BE63FE0033BDC3 /* SharedRecordView.swift in Sources */,
-				330F739227E33AE500CBA185 /* API.swift in Sources */,
 				330F738227E269D100CBA185 /* DriveSelectionView.swift in Sources */,
+				33BDA93D2807024100A81E27 /* SensorSheet.swift in Sources */,
 				330F738C27E3355000CBA185 /* SensorModel.swift in Sources */,
+				33BDA92F2806AEF300A81E27 /* AdminUserListView.swift in Sources */,
 				330F737927E09D5900CBA185 /* VehicleViewModel.swift in Sources */,
+				33BDA9202805790200A81E27 /* UserModel.swift in Sources */,
 				33F15D0927C4FC0100D041BE /* SensorPickerView.swift in Sources */,
 				33A4C43927BBC382008DF033 /* View+Extension.swift in Sources */,
+				33BDA9352806C1A000A81E27 /* UserSheet.swift in Sources */,
 				33F11CD227BE6EB00033BDC3 /* CarSliderView.swift in Sources */,
+				33BDA92A28058D9800A81E27 /* AdminTabView.swift in Sources */,
 				330F737527DE102400CBA185 /* TokenAddingInterceptor.swift in Sources */,
 				3367055827E3402300C026C1 /* ReadingViewModel.swift in Sources */,
 				3367055C27E37C2200C026C1 /* CustomSlider.swift in Sources */,
+				33BDA92D2806A68C00A81E27 /* AccountView.swift in Sources */,
 				330F738627E26A5100CBA185 /* DriveModel.swift in Sources */,
 				33F15D1D27CA245F00D041BE /* MapTest.swift in Sources */,
 				33A4C43627BBB8B6008DF033 /* CustomColor.swift in Sources */,
 				33F15D1B27CA23E300D041BE /* MapView.swift in Sources */,
 				33F11CCC27BE639C0033BDC3 /* UserTabView.swift in Sources */,
-				33F15D0E27C50F9700D041BE /* GraphTest.swift in Sources */,
 				330F738827E3345B00CBA185 /* Graph.swift in Sources */,
 				33A4C43B27BBC967008DF033 /* CustomButtons.swift in Sources */,
 				33F11CD627BE7A570033BDC3 /* CarSpecsView.swift in Sources */,
+				33BDA93B2806FEC900A81E27 /* AdminViewModel.swift in Sources */,
 				33A4C42227BBAFE1008DF033 /* seniorRimacAppApp.swift in Sources */,
 				3367055A27E3579400C026C1 /* GraphView.swift in Sources */,
+				33BDA9432807079600A81E27 /* CreateToleraneView.swift in Sources */,
+				33BDA92728058D7000A81E27 /* AdminView.swift in Sources */,
 				330F737D27E0D28400CBA185 /* CarSelectionView.swift in Sources */,
+				33BDA9452807102B00A81E27 /* API.swift in Sources */,
 				330F738E27E335B700CBA185 /* ReadingsModel.swift in Sources */,
 				330F737727DE111900CBA185 /* NetworkInteceptorProvider.swift in Sources */,
 				330F736D27DCDD1600CBA185 /* Network.swift in Sources */,
 				33F11CD027BE64B10033BDC3 /* MyCarsView.swift in Sources */,
 				330F737B27E0A8C200CBA185 /* VehicleModel.swift in Sources */,
 				330F736F27DCDD5A00CBA185 /* LoginViewModel.swift in Sources */,
+				33BDA922280581B900A81E27 /* UserViewModel.swift in Sources */,
+				33BDA9332806B07000A81E27 /* UsersModel.swift in Sources */,
+				33BDA9392806E94E00A81E27 /* AdminUpdateUserView.swift in Sources */,
 				33F11CD427BE76180033BDC3 /* CarSpeedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

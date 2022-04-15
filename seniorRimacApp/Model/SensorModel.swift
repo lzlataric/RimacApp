@@ -14,4 +14,7 @@ struct Sensors: Identifiable{
     var id : GraphQLID{
         sensors.id
     }
+    var name : String{
+        sensors.name
+    }
 }

@@ -22,6 +22,7 @@ struct GraphView: View {
             .yAxisLabels(chartData: data)
             .floatingInfoBox(chartData: data)
             .headerBox(chartData: data)
+            .id(data.id)
         //.legends(chartData: data)
             .frame(minWidth: 150, maxWidth: 380, minHeight: 150, idealHeight: 500, maxHeight: 600, alignment: .center)
             .padding(.horizontal)

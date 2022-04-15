@@ -13,18 +13,19 @@ import Combine
 class ReadingViewModel: ObservableObject{
     @Published var readings : [Readings] = []
     @Published var sortedReadings : [Readings] = []
-    @Published var graphPoints = LineChartData(dataSets: LineDataSet(dataPoints: []))
+    @Published var graphPoints = LineChartData(dataSets: LineDataSet(dataPoints: [LineChartDataPoint(value: 0, xAxisLabel: ".")]))
     @Published var shouldShowGraph: Bool = true
     
     @Published var sliderOne: Double = 0
-    @Published var sliderTwo: Double = 100
+    @Published var sliderTwo: Double = 1
     
     var cancellables: [AnyCancellable] = []
     
     init(){
         $sliderOne
             .removeDuplicates()
-            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .debounce(for: 1, scheduler: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: {str in
                 self.shouldShowGraph = false
                 self.graphPoints = LineChartData(dataSets: LineDataSet(dataPoints: []))
@@ -32,13 +33,13 @@ class ReadingViewModel: ObservableObject{
                 //
                 
                 self.graphPoints = self.getGraphData(title: "")
-                //self.shouldShowGraph = true
+                self.shouldShowGraph = true
             })
             .store(in: &cancellables)
         
         $sliderTwo
             .removeDuplicates()
-            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .debounce(for: 1, scheduler: RunLoop.main)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: {str in
                 self.shouldShowGraph = false
@@ -102,7 +103,7 @@ class ReadingViewModel: ObservableObject{
     func getDataPoints() -> [LineChartDataPoint]{
         var data : [LineChartDataPoint] = []
         for reading in sortedReadings{
-            let point = LineChartDataPoint(value: reading.value, xAxisLabel: "", description: "")
+            let point = LineChartDataPoint(value: reading.value)
             data.append(point)
         }
         return data
@@ -125,8 +126,8 @@ class ReadingViewModel: ObservableObject{
                                                         //xAxisTitle: "Time",
                                                         xAxisTitleColour: CustomColor.monoRimacBlue,
                                                         xAxisBorderColour: CustomColor.rimacBlue,
-                                                        yAxisGridStyle: GridStyle(numberOfLines: 5,lineColour: CustomColor.rimacBlue.opacity(0.5)),
-                                                        yAxisNumberOfLabels: 5,
+                                                        yAxisGridStyle: GridStyle(numberOfLines: 1,lineColour: CustomColor.rimacBlue.opacity(0.5)),
+                                                        yAxisNumberOfLabels: 2,
                                                         //yAxisTitle: "Battery available in %",
                                                         yAxisTitleColour: CustomColor.monoRimacBlue,
                                                         yAxisBorderColour: CustomColor.rimacBlue,

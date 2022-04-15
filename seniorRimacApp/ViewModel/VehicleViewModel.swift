@@ -11,6 +11,7 @@ import Foundation
 class VehicleViewModel: ObservableObject{
     //@Published var car : [VehiclesQuery.Data.Vehicle] = []
     @Published var car : [Vehicle] = []
+
     
     init(){
         fetch()

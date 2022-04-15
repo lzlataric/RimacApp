@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SharedRecordView: View {
     var body: some View {
-        GraphTest()
+        EmptyView()
     }
 }
 

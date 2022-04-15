@@ -11,6 +11,7 @@ struct LogInView: View {
     
     @ObservedObject var loginVM = LoginViewModel()
     
+    
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var isLogged : Bool = false
@@ -38,8 +39,10 @@ struct LogInView: View {
                     TextField("", text: $username)
                         .frame(width: 250, height: 30)
                         .foregroundColor(Color.white)
+                        .keyboardType(.default)
+                        .autocapitalization(.none)
                         .placeholder(when: username == "") {
-                            Text("Email").foregroundColor(.white)
+                            Text("Username").foregroundColor(.white)
                         }
                     Divider()
                         .frame(width: 250, height: 2)
@@ -73,19 +76,19 @@ struct LogInView: View {
                 }
                 Spacer()
                 
-                Group{
-                    Button("Forgotten password?") {
-                        // Login
-                        print("Forgotten pass")
-                    }
-                    .frame(width: 200, alignment: .center)
-                    .font(.subheadline)
-                    .foregroundColor(.white)
-                    Divider()
-                        .frame(width: 140, height: 1)
-                        .background(Color.white)
-                        .offset(x: 0, y: -11)
-                }
+//                Group{
+//                    Button("Forgotten password?") {
+//                        // Login
+//                        print("Forgotten pass")
+//                    }
+//                    .frame(width: 200, alignment: .center)
+//                    .font(.subheadline)
+//                    .foregroundColor(.white)
+//                    Divider()
+//                        .frame(width: 140, height: 1)
+//                        .background(Color.white)
+//                        .offset(x: 0, y: -11)
+//                }
                 Group{
                 Spacer()
                 Spacer()
@@ -96,7 +99,7 @@ struct LogInView: View {
 //                UserTabView()
 //            }
             if loginVM.loggedIn{
-                UserTabView()
+                UserTabView(logVM: loginVM)
             }
                 
         }

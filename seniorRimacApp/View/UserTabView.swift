@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UserTabView: View {
+    @ObservedObject var logVM : LoginViewModel
+    @StateObject var userVM : UserViewModel = UserViewModel()
     @ObservedObject var vehicleVM = VehicleViewModel()
     @ObservedObject var driveVM = DriveViewModel()
     @ObservedObject var readingVM = ReadingViewModel()
@@ -15,6 +17,7 @@ struct UserTabView: View {
     @State var selectedCarName = ""
     var body: some View {
         NavigationView {
+            if(userVM.userInfo != "GENERAL_ADMIN"){
         TabView{
             
             CarSelectionView(carVM: vehicleVM, driveVM: driveVM, selectedCar: $selectedCar, selectedCarName: $selectedCarName)
@@ -32,22 +35,33 @@ struct UserTabView: View {
                     Label("Drives", systemImage: "scribble.variable")
                 }
             
-//            MyCarsView(carVM: vehicleVM)
-//                .tabItem {
-//                    Label("My Car", systemImage: "car.fill")
-//                }
+            AccountView(logVM: logVM, userVM: userVM)
+                .tabItem {
+                    Label("Account", systemImage: "person.fill")
+                }
             
             
 
         }
+        
+        }
+            else{
+                AdminTabView(vehicleVM: vehicleVM, driveVM: driveVM, readingVM: readingVM, logVM: logVM, userVM: userVM, selectedCar: $selectedCar, selectedCarName: $selectedCarName)
+            }
+            
+            
+    }
         .accentColor(CustomColor.rimacBlue)
                     .navigationBarHidden(true)
+                    .onAppear{
+                        userVM.meQuery()
+                    }
     }
-    }
+        
 }
 
-struct UserTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserTabView()
-    }
-}
+//struct UserTabView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserTabView()
+//    }
+//}

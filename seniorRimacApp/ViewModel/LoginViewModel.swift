@@ -7,9 +7,12 @@
 
 import Foundation
 import KeychainSwift
+import Apollo
 
 class LoginViewModel: ObservableObject{
     @Published var loggedIn : Bool = false
+    //private var userInfo: Role = .guest
+    
     let keychain = KeychainSwift()
     
     func logIn(username: String, password: String) {
@@ -21,11 +24,14 @@ class LoginViewModel: ObservableObject{
                   if graphQLResult.data?.login?.token != nil{
                       self.loggedIn = true
                       self.keychain.set((graphQLResult.data?.login?.token)!, forKey: "token")
+                      
                   }
               case .failure(let error):
                 print("Failure! Error: \(error)")
               }
             }
         }
+    
+    
     
 }
